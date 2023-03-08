@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d757a3fa272504f09b53962e02a22af7, type: 3}
+  m_Name: PNJ_0
+  m_EditorClassIdentifier: 
+  textList:
+  - Bonjour, je suis un PNJ.
+  - "\xC7a veut Personnage Non Joueur."
+  - Mon existence n'a donc pas de sens si il n'y a pas de joueur.
+  - Attends quoi ?!
