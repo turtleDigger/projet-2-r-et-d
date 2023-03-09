@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: PNJ_2
   m_EditorClassIdentifier: 
   textList:
-  - Au secours !
-  - "\xC0 l'aide !"
+  - "Au secours ! \xC0 l'aide !"

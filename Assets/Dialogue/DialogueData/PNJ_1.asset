@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: PNJ_1
   m_EditorClassIdentifier: 
   textList:
-  - C'est trop bizarre.
-  - "Je n'arrive pas \xE0-bou-ger !"
-  - "Pourquoi faites-vous \xE7a ?!"
-  - Laissez-moi sortir !
+  - "C'est trop bizarre. Je n'arrive pas \xE0_bou_ger !"
+  - "Pourquoi faites-vous \xE7a ? Laissez-moi sortir !"

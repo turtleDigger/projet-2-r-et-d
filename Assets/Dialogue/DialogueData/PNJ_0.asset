@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: PNJ_0
   m_EditorClassIdentifier: 
   textList:
-  - Bonjour, je suis un PNJ.
-  - "\xC7a veut Personnage Non Joueur."
-  - Mon existence n'a donc pas de sens si il n'y a pas de joueur.
-  - Attends quoi ?!
+  - "Bonjour, je suis un PNJ. \xC7a veut Personnage Non Joueur."
+  - Mon existence n'a donc pas de sens si il n'y a pas de joueur. Attends quoi ?

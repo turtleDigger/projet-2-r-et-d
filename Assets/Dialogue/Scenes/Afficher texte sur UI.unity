@@ -502,12 +502,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 499036940abf70a0fb9149a4a43cc446, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textList:
-  - Bonjour, je suis un PNJ.
-  - "\xC7a veut Personnage Non Joueur."
-  - Mon existence n'a donc pas de sens si il n'y a pas de joueur.
-  - Attends quoi ?!
-  _dialogueScript: {fileID: 1323365934440657897}
+  _dialogueText:
+  - {fileID: 11400000, guid: e05bd98805ac9a1a8bbcef6e829fc0ff, type: 2}
+  - {fileID: 11400000, guid: 18b0b2e29a51619a6a32e94404e6d190, type: 2}
+  - {fileID: 11400000, guid: 4b77c6c1b6dd08ea684430d23b4154ae, type: 2}
 --- !u!65 &1755483606
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -929,7 +927,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!222 &1323365934440657911
 CanvasRenderer:
   m_ObjectHideFlags: 0
