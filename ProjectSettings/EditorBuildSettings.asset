@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Backlighting/Scenes/Backlighting.unity
+    guid: b3c86d7b82e880599ad6005a191d347a
   m_configObjects: {}
