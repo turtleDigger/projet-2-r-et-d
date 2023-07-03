@@ -5,45 +5,67 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
+    private const int _xRange = 7;
+    private  float _cameraSpeedX, _cameraSpeedY, _leftScreen, _rightScreen, _bottomScreen, _topScreen;
     public Vector2 mousePosition, hotSpot;
-    public float mousePositionX, mousePositionY;
-    private CursorMode cursorMode;
-    public Texture2D cursorT2D;
+    private CursorMode _cursorMode;
+    public Texture2D cursorTexture2D;
     public CinemachineFreeLook thirdPersonCamera;
-    // Start is called before the first frame update
-    void Start()
+
+    void Init()
     {
-        // cursorMode = CursorMode.Auto;
-        // hotSpot = new Vector2(cursorT2D.height / 2, cursorT2D.width / 2);
-        // Cursor.SetCursor(cursorT2D, hotSpot, cursorMode);
-        Cursor.visible = false;
+        _cameraSpeedX = 14 * Time.deltaTime;
+        _cameraSpeedY = Time.deltaTime;
+        _leftScreen = Screen.width / 10;
+        _rightScreen = Screen.width - _leftScreen;
+        _bottomScreen = Screen.height / 10;
+        _topScreen = Screen.height - _bottomScreen;
     }
 
-    // Update is called once per frame
+    void Start()
+    {
+        Init();
+        _cursorMode = CursorMode.Auto;
+        hotSpot = new Vector2(cursorTexture2D.height / 2, cursorTexture2D.width / 2);
+        Cursor.SetCursor(cursorTexture2D, hotSpot, _cursorMode);
+        Application.targetFrameRate = 60;
+    }
+    
     void Update()
     {
         mousePosition = Input.mousePosition;
-        mousePosition.x = Mathf.Clamp(mousePosition.x, Screen.width * 0.05f, Screen.width - Screen.width * 0.05f);
-        mousePosition.y = Mathf.Clamp(mousePosition.y, Screen.height / 2, Screen.height - Screen.height / 10);
-
-        hotSpot = new Vector2(cursorT2D.height / 2, cursorT2D.width / 2);
-        Cursor.SetCursor(cursorT2D, hotSpot, cursorMode);
-
-        mousePositionX = mousePosition.x / Screen.width;
-        mousePositionY = mousePosition.y / Screen.height;
-        thirdPersonCamera.m_YAxis.Value = (mousePositionY - 0.5f) * 2 / 0.8f;
-        thirdPersonCamera.m_XAxis.Value = ((mousePositionX - 0.5f) * 2 / 0.9f) * 27;
+        MoveCamera();
     }
 
-    void OnGUI()
+    void MoveCamera()
     {
-        // mousePosition = Input.mousePosition;
-        // mousePosition.x = Mathf.Clamp(mousePosition.x, Screen.width * 0.05f, Screen.width - Screen.width * 0.05f);
-        // mousePosition.y = Mathf.Clamp(mousePosition.y, Screen.height / 2, Screen.height - Screen.height / 10);
-
-        GUI.DrawTexture(new Rect( mousePosition.x - (cursorT2D.width/2),
-                        Screen.height - mousePosition.y - (cursorT2D.height/2),
-                        cursorT2D.width,
-                        cursorT2D.height), cursorT2D);
+        if(Input.mousePosition.x < _leftScreen)
+        {
+            if(thirdPersonCamera.m_XAxis.Value > -_xRange)
+            {
+                thirdPersonCamera.m_XAxis.Value -= _cameraSpeedX;
+            }
+        }
+        else if(Input.mousePosition.x > _rightScreen)
+        {
+            if(thirdPersonCamera.m_XAxis.Value < _xRange)
+            {
+                thirdPersonCamera.m_XAxis.Value += _cameraSpeedX;
+            }
+        }
+        if(Input.mousePosition.y < _bottomScreen)
+        {
+            if(thirdPersonCamera.m_YAxis.Value > 0)
+            {
+                thirdPersonCamera.m_YAxis.Value -= _cameraSpeedY;
+            }
+        }
+        else if(Input.mousePosition.y > _topScreen)
+        {
+            if(thirdPersonCamera.m_YAxis.Value < 1)
+            {
+                thirdPersonCamera.m_YAxis.Value += _cameraSpeedY;
+            }
+        }
     }
 }
