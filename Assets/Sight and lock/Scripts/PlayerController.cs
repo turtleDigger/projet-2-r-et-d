@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float axis = 0;
     private const int _xRange = 7;
     private  float _cameraSpeedX, _cameraSpeedY, _leftScreen, _rightScreen, _bottomScreen, _topScreen;
     public Vector2 mousePosition, hotSpot;
@@ -35,22 +36,84 @@ public class PlayerController : MonoBehaviour
     {
         mousePosition = Input.mousePosition;
         MoveCamera();
+        if(Input.GetKeyUp(KeyCode.Q))
+        {
+            ChangeAxis(-1);
+        }
+        if(Input.GetKeyUp(KeyCode.E))
+        {
+            ChangeAxis(1);
+        }
+    }
+
+    void ChangeAxis(int sign)
+    {
+        if(Mathf.Abs(axis) == 180)
+        {
+            thirdPersonCamera.m_XAxis.Value = -90 * sign;
+        }
+        else
+        {
+            thirdPersonCamera.m_XAxis.Value = axis + sign * 90;
+        }
+
+        axis = thirdPersonCamera.m_XAxis.Value;
     }
 
     void MoveCamera()
     {
-        if(Input.mousePosition.x < _leftScreen)
+        if(Mathf.Abs(axis) == 180)
         {
-            if(thirdPersonCamera.m_XAxis.Value > -_xRange)
+            if(thirdPersonCamera.m_XAxis.Value > 0)
             {
-                thirdPersonCamera.m_XAxis.Value -= _cameraSpeedX;
+                if(Input.mousePosition.x < _leftScreen)
+                {
+                    if(thirdPersonCamera.m_XAxis.Value -180 > 0 -_xRange)
+                    {
+                        thirdPersonCamera.m_XAxis.Value -= _cameraSpeedX;
+                    }
+                }
+                else if(Input.mousePosition.x > _rightScreen)
+                {
+                    if(thirdPersonCamera.m_XAxis.Value -180 < 0 +_xRange)
+                    {
+                        thirdPersonCamera.m_XAxis.Value += _cameraSpeedX;
+                    }
+                }
+            }
+            else
+            {
+                if(Input.mousePosition.x < _leftScreen)
+                {
+                    if(thirdPersonCamera.m_XAxis.Value +180 > 0 -_xRange)
+                    {
+                        thirdPersonCamera.m_XAxis.Value -= _cameraSpeedX;
+                    }
+                }
+                else if(Input.mousePosition.x > _rightScreen)
+                {
+                    if(thirdPersonCamera.m_XAxis.Value +180 < 0 +_xRange)
+                    {
+                        thirdPersonCamera.m_XAxis.Value += _cameraSpeedX;
+                    }
+                }
             }
         }
-        else if(Input.mousePosition.x > _rightScreen)
+        else
         {
-            if(thirdPersonCamera.m_XAxis.Value < _xRange)
+            if(Input.mousePosition.x < _leftScreen)
             {
-                thirdPersonCamera.m_XAxis.Value += _cameraSpeedX;
+                if(thirdPersonCamera.m_XAxis.Value > axis -_xRange)
+                {
+                    thirdPersonCamera.m_XAxis.Value -= _cameraSpeedX;
+                }
+            }
+            else if(Input.mousePosition.x > _rightScreen)
+            {
+                if(thirdPersonCamera.m_XAxis.Value < axis +_xRange)
+                {
+                    thirdPersonCamera.m_XAxis.Value += _cameraSpeedX;
+                }
             }
         }
         if(Input.mousePosition.y < _bottomScreen)
